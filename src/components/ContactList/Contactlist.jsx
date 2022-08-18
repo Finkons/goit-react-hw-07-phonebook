@@ -20,21 +20,18 @@ const ContactList = () => {
   let rendered = filter === '' ? data : filteredContacts();
 
   return (
-    <>
-      <List>
-        {data &&
-          rendered.map(({ id, name, number }) => (
-            <li key={id} id={id}>
-              {name}: {number}
-              <button type="button" onClick={() => deleteContact(id)}>
-                <FaUserAltSlash size={20} color={'red'} />
-              </button>
-            </li>
-          ))}
-      </List>
-      {data && data.length === 0 && <p>No contacts available</p>}
+    <List>
       {isFetching && <p>...Loading</p>}
-    </>
+      {data &&
+        rendered.map(({ id, name, number }) => (
+          <li key={id} id={id}>
+            {name}: {number}
+            <button type="button" onClick={() => deleteContact(id)}>
+              <FaUserAltSlash size={20} color={'red'} />
+            </button>
+          </li>
+        ))}
+    </List>
   );
 };
 

@@ -2,6 +2,7 @@ import { FaUserAltSlash } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/contactsSlice';
 import { List } from './Contactlist.styled';
+import { SpinnerCircular } from 'spinners-react';
 import {
   useGetContactsQuery,
   useDeleteContactMutation,
@@ -21,7 +22,15 @@ const ContactList = () => {
 
   return (
     <List>
-      {isFetching && <p>...Loading</p>}
+      {isFetching && (
+        <SpinnerCircular
+          size={47}
+          thickness={150}
+          speed={98}
+          color="rgba(57, 172, 59, 1)"
+          secondaryColor="rgba(57, 158, 172, 0.58)"
+        />
+      )}
       {data &&
         rendered.map(({ id, name, number }) => (
           <li key={id} id={id}>
